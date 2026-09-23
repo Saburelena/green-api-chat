@@ -3,10 +3,12 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useSession } from '@/entities/session';
 import { LoginForm } from '@/features/auth/ui/LoginForm';
+import { isMockMode } from '@/shared/config';
 
 beforeEach(() => {
   useSession.setState({ creds: null });
   sessionStorage.clear();
+  vi.unstubAllEnvs();
 });
 
 describe('LoginForm', () => {
@@ -34,5 +36,20 @@ describe('LoginForm', () => {
     fireEvent.click(screen.getByRole('button', { name: /войти/i }));
 
     expect(onSuccess).toHaveBeenCalledOnce();
+  });
+
+  it('автоматически входит в mock-режиме без реальных credential', () => {
+    vi.stubEnv('VITE_USE_MOCK', 'true');
+    const onSuccess = vi.fn();
+    render(<LoginForm onSuccess={onSuccess} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /войти/i }));
+
+    expect(useSession.getState().creds).toEqual({
+      idInstance: 'mock',
+      apiTokenInstance: 'mock',
+    });
+    expect(onSuccess).toHaveBeenCalledOnce();
+    expect(isMockMode()).toBe(true);
   });
 });

@@ -1,2 +1,2 @@
-export { env } from './env';
+export { env, isMockMode } from './env';
 export { ROUTES } from './routes';

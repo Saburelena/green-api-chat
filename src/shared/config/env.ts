@@ -1,9 +1,10 @@
-const useMock =
+export const isMockMode = () =>
   import.meta.env.VITE_USE_MOCK === 'true' ||
   import.meta.env.VITE_USE_MOCK === '1' ||
   import.meta.env.VITE_USE_MOCK === 'yes';
 
 const greenApiUrl = import.meta.env.VITE_GREEN_API_URL;
+const useMock = isMockMode();
 
 if (!useMock && !greenApiUrl) {
   throw new Error(

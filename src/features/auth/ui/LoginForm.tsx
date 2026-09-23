@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 
 import { useSession } from '@/entities/session';
+import { isMockMode } from '@/shared/config';
 import { Button, Input } from '@/shared/ui';
 
 export const LoginForm = ({ onSuccess }: { onSuccess: () => void }) => {
@@ -11,6 +12,16 @@ export const LoginForm = ({ onSuccess }: { onSuccess: () => void }) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    if (isMockMode()) {
+      setCreds({
+        idInstance: 'mock',
+        apiTokenInstance: 'mock',
+      });
+      onSuccess();
+      return;
+    }
+
     const next: typeof errors = {};
     if (!idInstance.trim()) next.id = 'Укажите idInstance';
     if (!apiTokenInstance.trim()) next.token = 'Укажите apiTokenInstance';
