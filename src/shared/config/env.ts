@@ -1,6 +1,11 @@
+const useMock =
+  import.meta.env.VITE_USE_MOCK === 'true' ||
+  import.meta.env.VITE_USE_MOCK === '1' ||
+  import.meta.env.VITE_USE_MOCK === 'yes';
+
 const greenApiUrl = import.meta.env.VITE_GREEN_API_URL;
 
-if (!greenApiUrl) {
+if (!useMock && !greenApiUrl) {
   throw new Error(
     'VITE_GREEN_API_URL is not defined. Проверьте файл .env (см. .env.example).',
   );
@@ -15,6 +20,7 @@ if (!Number.isFinite(pollIntervalMs) || pollIntervalMs <= 0) {
 }
 
 export const env = {
-  greenApiUrl,
+  greenApiUrl: greenApiUrl ?? 'https://mock.green-api.local',
   pollIntervalMs,
+  useMock,
 } as const;

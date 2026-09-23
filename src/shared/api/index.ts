@@ -1,4 +1,5 @@
 export { GreenApiClient } from './GreenApiClient';
+export { MockGreenApiClient } from './MockGreenApiClient';
 export type { IGreenApiClient } from './IGreenApiClient';
 export { ApiError } from './ApiError';
 export type { ApiErrorKind } from './ApiError';

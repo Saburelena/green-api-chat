@@ -1,5 +1,7 @@
 import { GreenApiClient } from '@/shared/api/GreenApiClient';
+import { MockGreenApiClient } from '@/shared/api/MockGreenApiClient';
 import type { IGreenApiClient } from '@/shared/api/IGreenApiClient';
+import { env } from '@/shared/config';
 import type { Credentials } from '@/shared/types/greenApi';
 
 import { TOKENS } from './tokens';
@@ -31,5 +33,5 @@ export const container = new DIContainer();
 
 container.register<IGreenApiClient>(
   TOKENS.GreenApiClient,
-  (creds) => new GreenApiClient(creds),
+  (creds) => (env.useMock ? new MockGreenApiClient(creds) : new GreenApiClient(creds)),
 );
