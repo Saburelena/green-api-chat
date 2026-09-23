@@ -2,27 +2,99 @@
 
 Тестовое задание: SPA на React + TypeScript для отправки и получения текстовых сообщений через GREEN-API (мессенджер MAX).
 
+Репозиторий проекта: https://github.com/Saburelena/green-api-chat
+
+## Описание
+
+Минималистичное веб-приложение для работы с GREEN-API: вход в аккаунт, создание чатов, отправка сообщений и получение входящих уведомлений. В логике предусмотрен polling уведомлений, обработка ошибок и базовый статус офлайн/онлайн.
+
+## Что реализовано
+
+- авторизация по `idInstance` и `apiTokenInstance`;
+- создание чата по номеру телефона;
+- отправка текстовых сообщений через GREEN-API;
+- получение входящих сообщений по polling;
+- удаление обработанных уведомлений;
+- сохранение авторизации в sessionStorage;
+- локальное хранение чатов и сообщений;
+- состояние загрузки и ошибки при отправке сообщения;
+- базовая валидация входных данных.
+
 ## Стек
 
-- React 18, TypeScript 5.5, Vite 5
+- React 18
+- TypeScript 5.5
+- Vite 5
 - React Router v6
-- Zustand (+ persist, sessionStorage для токена)
+- Zustand
 - Axios
-- Tailwind CSS, PostCSS, Autoprefixer
-- ESLint, Prettier, Vitest
-- Feature-Sliced Design (луковичная архитектура)
-- DI-контейнер через интерфейс `IGreenApiClient`
+- Tailwind CSS
+- ESLint
+- Prettier
+- Vitest
+- Feature-Sliced Design
 
 ## Архитектура
 
-Слои: `app → pages → widgets → features → entities → shared`.  
-Каждый слой зависит только от слоёв ниже.  
-Бизнес-логика (`features`, `entities`) не знает о конкретном HTTP-клиенте — только об интерфейсе.  
-Конкретная реализация `GreenApiClient` создаётся DI-контейнером и кэшируется по `idInstance + apiTokenInstance`.
+Проект разделён по слоям `app → pages → widgets → features → entities → shared`.
 
-## Запуск
+Основная логика вынесена в feature- и entity-слои, а HTTP-взаимодействие инкапсулировано в интерфейс `IGreenApiClient`. Конкретная реализация `GreenApiClient` создаётся через DI-контейнер, что упрощает подмену и тестирование.
+
+## Переменные окружения
+
+Перед запуском нужно создать `.env` на основе `.env.example`:
 
 ```bash
 cp .env.example .env
+```
+
+Пример содержимого:
+
+```env
+VITE_GREEN_API_URL=https://api.green-api.com
+VITE_POLL_INTERVAL_MS=5000
+```
+
+## Запуск проекта
+
+```bash
 npm install
 npm run dev
+```
+
+Приложение откроется по адресу:
+
+```bash
+http://localhost:5173/
+```
+
+## Скрипты
+
+```bash
+npm run dev
+npm run build
+npm run typecheck
+npm run lint
+npm run test
+```
+
+## Проверка качества
+
+Проект проверяется через:
+
+- TypeScript compile check;
+- ESLint;
+- Vitest;
+- production build через Vite.
+
+## Деплой
+
+На данный момент деплой в Vercel/Netlify не настроен. После публикации будет добавлена ссылка на рабочую версию приложения.
+
+## Скриншоты
+
+Скриншоты интерфейса будут добавлены позже после публикации проекта и подготовки финального визуального описания приложения.
+
+## Заключение
+
+Проект реализован как тестовое задание на React + TypeScript для работы с GREEN-API и обмена текстовыми сообщениями в мессенджере MAX. Основная цель — показать рабочую логику авторизации, отправки сообщений, polling входящих уведомлений и базовую структуру приложения в современном frontend-стеке.
