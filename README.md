@@ -102,13 +102,40 @@ npm run test
 - Vitest;
 - production build через Vite.
 
-## Деплой
+## Демо
 
-Демоверсия может быть опубликована на Vercel в mock-режиме. Для реального использования с GREEN-API нужно включить `VITE_USE_MOCK=false` и указать свои `idInstance` и `apiTokenInstance`.
+Ссылка на публичную демо-версию:
+
+https://green-api-chat-1fvczbmi7-saburelena.vercel.app/login
+
+Для реального использования с GREEN-API нужно включить `VITE_USE_MOCK=false` и указать свои `idInstance` и `apiTokenInstance`.
 
 ## Скриншоты
 
-Скриншоты интерфейса будут добавлены позже после подготовки финальной демонстрации проекта.
+Финальные скриншоты приложения находятся в папке `public/screenshots/`.
+
+Примеры:
+
+- `public/screenshots/login.png` — стартовый экран авторизации
+- `public/screenshots/chat-empty.png` — пустое состояние чатов
+- `public/screenshots/chat-list.png` — список чатов и поле ввода сообщения
+- `public/screenshots/chat-message.png` — отправленное сообщение в чате
+- `public/screenshots/message-thread.png` — открытый диалог с номером собеседника
+- `public/screenshots/chat-active.png` — активное состояние чата
+
+```md
+![Login screen](./public/screenshots/login.png)
+
+![Empty chat list](./public/screenshots/chat-empty.png)
+
+![Chat list and message input](./public/screenshots/chat-list.png)
+
+![Sent message](./public/screenshots/chat-message.png)
+
+![Open chat thread with contact number](./public/screenshots/message-thread.png)
+
+![Active chat state](./public/screenshots/chat-active.png)
+```
 
 ## Итог
 
