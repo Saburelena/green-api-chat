@@ -4,6 +4,19 @@
 
 Репозиторий проекта: https://github.com/Saburelena/green-api-chat
 
+## 🏆 Сертификат GREEN-API
+
+[![GREEN-API Certified](https://img.shields.io/badge/GREEN--API-Certified-green)](https://green-api.com/certificates/developer/d7baa186d1554b96.pdf)
+
+Тестовое задание проверено и одобрено компанией GREEN-API.
+
+Сертификат: [PDF](https://green-api.com/certificates/developer/d7baa186d1554b96.pdf)
+
+Номер сертификата: № 2243697  
+Дата выдачи: 25.09.2026
+
+Это подтверждение того, что проект и логика работы с GREEN-API были успешно проверены и соответствуют требованиям компании.
+
 ## Описание
 
 Приложение для работы с GREEN-API: вход в аккаунт, создание чатов, отправка сообщений и получение входящих уведомлений. В логике предусмотрен polling, обработка ошибок и базовый статус offline/online.
